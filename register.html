@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Registrate Ahora!</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width">
+<script type="text/javascript">
+/**
+*Metodo que verifica que se hallan metido todos los campos dentro de la ventana Register
+*/
+	function validarDatosPOST(){
+		var verificar=true;
+				if (!document.registrarse_frm.newuser.value) {	
+					alert("El campo nombre del usuario es requerido");
+					document.registrarse_frm.newuser.focus();
+					verificar=false;
+				}else if(!document.registrarse_frm.newpassword.value){
+					alert("El campo password del usuario es requerido");
+					document.registrarse_frm.newpassword.focus();
+					verificar=false;
+				}else if(!document.registrarse.email.value){
+					alert("El campo email del usuario es requerido");
+					document.registrarse_frm.email.focus();
+					verificar=false;
+				}
+				if(verificar){
+					document.registrarse_frm.submit();
+				}
+				
+	}
+/**
+*Metodo que ejecuta mediante un evento el metodo validarDatosPOST
+*/
+	window.onload = function(){
+			document.getElementById("enviar_registro").onclick =validarDatosPOST;
+	}
+</script>
+</head>
+<style type="text/css">
+/**
+*Representa la configuracion de la apariencia del form registrarse
+*/
+#registrarse{
+	background-color: #084B8A;
+	border: 1px solid white;
+	margin: 250px auto;
+	border-radius: 9px;
+	padding: 1em;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+	font-size: 16px;
+}
+/**
+*Representa la configuracion de la apariencia de todo el body
+*/
+body {
+	
+	width: 500px;
+	height: 20px;
+	margin-top: 200px;
+	margin-left: 450px;
+	margin-right: 450px;
+}
+/**
+*Representa la configuracion de la apariencia de todo los campos tipo texto
+*/
+input[type=text]{
+	margin-left: 1em;
+	border-radius: 4px 4px 4px 4px;
+	padding: 1em;
+	width: 135px;
+	left: 0px;
+	
+}
+/**
+*Representa la configuracion de la apariencia de todo los campos tipo password
+*/
+input[type="password"]{
+	border-radius: 4px 4px 4px 4px;
+	padding: 1em;
+	display: inline;
+	margin-left: 4em;
+}
+/**
+*Representa la configuracion de la apariencia de todo los campos tipo submit
+*/
+input[type=submit] {
+	margin-right: 6em;
+	margin-top: 2em;
+	border-radius: 4px 4px 4px 4px;
+	width: 100px;
+	padding: 1em;
+	background-color: #FE9A2E;
+	margin-left: 12em;
+}
+/**
+*Representa la configuracion de la letra del body,td,th
+*/
+body,td,th {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+}
+</style>
+<body background="imagen.jpg">
+	<div>
+		<form name="registrarse_frm"  id="registrarse" method="post" action="nuevoRegistro.php"
+		enctype="application/x-www-form-urlencoded">
+		<h1>Registrate a Guess Who!!!!!</h1>
+		 <br />
+		  <label>Digita tu usuario:</label>
+		  <input name="newuser" type="text" form="registrarse"/>
+		  <br />
+			<br />
+			<label>Digita la contraseña: </label>  
+			  <input name="newpassword" type="password" form="registrarse"/>
+			  <br />
+			  <br />
+			<label>Digita tu nombre completo: </label> 
+			  <input name="nameuser" type="text" form="registrarse"/>
+			  <br />
+			  <br />
+			<label>Digita tu correo electronico: </label>
+			  <input name="email" type="text" />
+			<input name="sub_btn" id="enviar_registro" type="submit" value="Enviar Datos"/>
+			<br /><br />
+		</form>
+	</div>
+</body>
+</html>

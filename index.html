@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- lo que significa la meta es para poner unas configuraciones que afectan indirectamente a la pagina en este caso significa que solo acepta caracteres del ascii version US-->
+<head>
+	<title><b>Guess Who??</b></title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width"><!--Se adapta a cualquier pantalla mira la informacion de pantalla-->
+<script>
+	/** 
+	*Metodo que verifica que los campos del inicio de sesion esten llenos y en caso contrario mostrar un mensaje
+	*/
+	function validarDatos(){
+			var verificar=true;
+			if(document.enviar_login_frm.user_txt.value=="Ingrese su Usuario"){
+				alert("El campo nombre es requerido");
+				document.enviar_login_frm.user_txt.focus();
+				verificar=false;
+			}
+			if (!document.enviar_login_frm.pass_txt.value) {
+				alert("El campo password es requerido");
+				document.enviar_login_frm.pass_txt.focus();
+				verificar=false;
+			}
+			if(verificar){
+				document.enviar_login_frm.submit();
+			}
+	}
+	/**
+	*Metodo que accede al metodo validarDatos con un evento onclick
+	*/
+	window.onload = function(){
+			
+			document.getElementById("enviar_login").onclick =validarDatos;
+	}
+</script>
+
+<!-- toda esta parte es con respecto al css(EStilo  cada componente esta descrito y se edita sus propiedades para que tengan una buena apariencia)-->
+<!-- px y em son medidas estandares para poder ubicar los objetos px se refiere a pixeles y em es un conjunto de estos pero no recuerdo cuantos-->
+<style type="text/css">
+/**
+*Representa la configuracion de apariencia de div log1
+*/
+#log1{
+	background-color: #BDBDBD;
+	width: 400px;
+	border: 1px solid white;
+	margin: 250px auto;
+	border-radius: 9px;
+	padding: 1em;
+}
+/**
+*Representa la configuracion de apariencia de h1
+*/
+h1{
+	font-family: calibri;
+	color: #FE9A2E;
+	margin-left: 2em;
+}
+/**
+*Representa la configuracion de apariencia de todos los botones tipo texto
+*/
+input[type=text]{
+	margin-left: 1em;
+	border-radius: 4px 4px 4px 4px;
+	padding: 1em;
+
+}
+/**
+*Representa la configuracion de apariencia de todos los botones tipo password
+*/
+input[type="password"]{
+	margin-left: 3em;
+	border-radius: 4px 4px 4px 4px;
+	padding: 1em;
+
+}
+/**
+*Representa la configuracion de apariencia de todos los botones tipo submit
+*/
+input[type=submit] {
+	margin-right: 6em;
+	margin-top: 2em;
+	margin-left: 1em;
+	border-radius: 4px 4px 4px 4px;
+	width: 100px;
+	padding: 1em;
+	background-color: #FE9A2E;
+}
+/**
+*Representa la configuracion de apariencia de un tag tipo 'a'
+*/
+a{
+	margin-left: 2em;
+}
+</style>
+</head>
+<body background="imagen.jpg"><!-- En esta parte se edita toda la parte del contenido de la pagina-->
+	
+	<div id="log1" ><!-- esto es como JPanel-->
+		<form name="enviar_login_frm" action="validarDatosLogin.php" method="post"
+	enctype="application/x-www-form-urlencoded"><!-- esto es como label-->
+			<!-- estos son los componentes que va a tener el log in, como en eclipse hay varios tipos de botones y cositas simplemente es indagar y ya-->
+			<h1>Ingreso Guess Who??</h1>
+			<input type="text" name="user_txt" value="Ingrese su Usuario"/>
+			<input type="password" name="pass_txt"  />
+			<input type="submit" name="submit_btn" id="enviar_login" value="Ingresar"/>
+			<a href="register.html">Registrese Ahora!</a>
+		</form>
+	</div>
+</body>
+</html>

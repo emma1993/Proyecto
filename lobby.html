@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Guess who? - Lobby</title>
+
+<style type="text/css">
+
+div.chatbox{
+
+	position:fixed;
+
+	display:table;
+
+        border-collapse: collapse;
+
+	width: 250px;
+
+	height: 350px;
+
+	border-radius: 9px;
+
+	padding: 0.5em;
+
+	background: rgba(0,0,0,.5);
+
+	margin-top:80px;
+
+	margin-bottom:100px;
+
+	margin-right:50px;
+
+	margin-left:715px;
+
+}
+
+div.gamebox{
+
+	position:fixed;
+
+	background: rgba(0,0,0,.5);
+
+	width: 630px;
+
+	height: 350px;
+
+	border-radius: 9px;
+
+	padding: 0.5em;
+
+	margin-top:80px;
+
+	margin-bottom:100px;
+
+	margin-right:50px;
+
+	margin-left:25px;
+
+}
+
+h1 {
+
+	font-family: "Times New Roman", Times, serif;
+
+	font-weight: bold;
+
+	text-align: center;
+
+	font-size: 40px;
+
+	color: #F00;
+
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
+}
+iframe {
+  background-color: #FFF;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+input[type="submit"]{
+  background-color: #FFF;
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+</style>
+
+</head>
+
+<body background="imagen.jpg">
+	<h1>Game Lobby</h1>
+	<div class="chatbox">
+		<table width="240" height="250">
+		<form method="post" action="handler.php">	
+		<tr>
+			<td><iframe src="messages.php" name="iframe" width="230" height="305"></iframe></td>			
+		</tr>
+		<tr>
+			<td><input type="text" size="24" name="message"> <button type="submit" name="send">Enviar</button>	
+		</tr>	
+		</form>	
+		</table>			
+	</div>
+</body>
+	<div class="gamebox"></div>
+</html>
