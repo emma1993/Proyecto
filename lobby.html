@@ -97,8 +97,9 @@ input[type="submit"]{
 <body background="imagen.jpg">
 	<h1>Game Lobby</h1>
 	<div class="chatbox">
-		<table width="240" height="250">
+  		<table width="240" height="250">
 		<form method="post" action="handler.php">	
+
 		<tr>
 			<td><iframe src="messages.php" name="iframe" width="230" height="305"></iframe></td>			
 		</tr>
@@ -108,6 +109,19 @@ input[type="submit"]{
 		</form>	
 		</table>			
 	</div>
-</body>
-	<div class="gamebox"></div>
+	<div class="gamebox">
+	<input type="radio" name="categoria" value="Simpsons">Simpsons
+  	<input type="radio" name="categoria" value="actores">Actores
+  	<input type="radio" name="categoria" value="jugadores">Jugadores de Futbol
+  	<input type="submit" value="Submit">
+  	
+			<iframe src="pool.html" name="iframe" width="605" height="280" >
+
+			</iframe>		
+		
+			<button type="submit" name="send">Enviar Reto</button>	
+				
+		
+  	</div>
+  	</body>
 </html>
