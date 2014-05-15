@@ -3,7 +3,7 @@ session_start();
 include "config.php";
 if(isset($_SESSION["user_name"]))
 {
-	$select = "SELECT id_personaje FROM partida WHERE user_name =".$_SESSION["user_name"];
+	$select = "SELECT id_personaje, personaje_activo FROM partida WHERE user_name =".$_SESSION["user_name"];
 	$query = mysqli_query($con, $select);
 	$rows = mysqli_num_rows($query);
 	$cont = 0;
