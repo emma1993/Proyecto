@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Guess who? - Lobby</title>
+
+<style type="text/css">
+
+
+input[type="text"]{
+
+	width:173px;
+
+	display:inline;
+
+	margin-left:5px;
+
+}
+
+body { width:960px; margin:auto; }
+
+div.chatbox{
+
+	position:fixed;
+
+	display:table;
+
+        border-collapse: collapse;
+
+	width: 250px;
+
+	height: 350px;
+
+	border-radius: 9px;
+
+	padding: 0.5em;
+
+	background: rgba(0,0,0,.5);
+
+	margin-top:25px;
+
+	margin-bottom:100px;
+
+	margin-right:50px;
+
+	margin-left:705px;
+
+}
+
+div.gamebox{
+
+	position:fixed;
+
+	background: rgba(0,0,0,.5);
+
+	width: 630px;
+
+	height: 560px;
+
+	border-radius: 9px;
+
+	padding: 0.5em;
+
+	margin-top:25px;
+
+	margin-bottom:100px;
+
+	margin-right:50px;
+
+	margin-left:25px;
+
+}
+div.optionbox{
+
+	position:fixed;
+
+        border-collapse: collapse;
+
+	width: 235px;
+
+	height: 190px;
+
+	border-radius: 9px;
+
+	padding: 0.5em;
+
+	background: rgba(0,0,0,.5);
+
+	margin-top:395px;
+
+	margin-bottom:100px;
+
+	margin-right:50px;
+
+	margin-left:705px;
+
+}
+
+h1 {
+	margin-top: 10px;
+
+	font-family: "Times New Roman", Times, serif;
+
+	font-weight: bold;
+
+	text-align: center;
+
+	font-size: 30px;
+
+	color: #F00;
+
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
+}
+iframe {
+  background-color: #FFF;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+input[type="submit"]{
+  background-color: #FFF;
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+</style>
+
+</head>
+
+<body background="imagen.jpg">
+	<div class="chatbox">
+		<table width="240" height="250">
+		<form method="post" action="handler.php">	
+		<tr>
+			<td><iframe src="messages.php" name="iframe" width="230" height="305"></iframe></td>			
+		</tr>
+		<tr>
+			<td><input type="text" name="message"> <button type="submit" name="send">Enviar</button>	
+		</tr>	
+		</form>	
+		</table>			
+	</div>
+</body>
+	<div class="gamebox"></div>
+	<div class="optionbox">
+	<h1>Opciones</h1>
+	<form method="post" action="optionsmainscenario.php">
+	<button type="submit" name="surrender">Rendirse</button>
+	<button type="submit" name="guess">Adivinar...</button></br>
+	<button type="submit" name="yes">Si</button>
+	<button type="submit" name="no">No</button>
+	</div>
+</html>
