@@ -21,7 +21,7 @@ if(isset($_SESSION["user_name"]))
 	/**
 	*Condicional que verifica que hallan columnas
 	*/
-	$selectpartida = "SELECT DISTINCT id_partida, user_name FROM partida WHERE user_name = ".$_SESSION["user_name"];
+	$selectpartida = "SELECT DISTINCT id_partida FROM partida WHERE user_name = ".$_SESSION["user_name"];
 	$querypartida = mysqli_query($con, $selectpartida);
 	$rowspartida = mysqli_num_rows($querypartida);
 	if($rows > 0)
