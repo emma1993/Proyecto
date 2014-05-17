@@ -43,5 +43,5 @@ if(isset($_SESSION["user_name"]))
 		<?
 	}
 }
-header('refresh:2, messagespartidas.php');
+header('refresh:2, messages_partidas.php');
 ?>
