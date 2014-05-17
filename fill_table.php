@@ -7,7 +7,6 @@ if(isset($_SESSION["user_name"]))
 	$query = mysqli_query($con, $select);
 	$rows = mysqli_num_rows($query);
 	$cont = 0;
-	$tableval;
 	if($rows > 0)
 	{
 		while($row = mysqli_fetch_array($query))
@@ -22,6 +21,6 @@ if(isset($_SESSION["user_name"]))
 		&nbsp;
 		<?
 	}
+	header("Location:game_control_table_images.php")
 }
-header('refresh:2, messages.php');
 ?>

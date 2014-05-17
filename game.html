@@ -201,7 +201,6 @@ right: 0;
                         $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."true".", ".$rowpersonaje["nombre_personaje"].")";
 			$queryestado  = mysqli_query($insertestado);
 		}
-		
 		echo "<img src=\"categorias/".$rowpersonaje["foto_personaje"]."\" width="120" height="280"></img>" 		
 	}
 
@@ -223,8 +222,12 @@ right: 0;
   </div>
  </body>
   <div class="gamebox">
-
-    </div>
+    <table width="240" height="250">
+    <form method="post" action="fill_table.php"> 
+    
+    </form> 
+    </table>  
+  </div>
   <div class="optionbox">
   <h1>Opciones</h1>
   <form method="post" action="optionsmainscenario.php">

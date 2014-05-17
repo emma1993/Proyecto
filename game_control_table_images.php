@@ -31,5 +31,5 @@ if(isset($_SESSION["user_name"]))
 		<?
 	}
 }
-header('refresh:2, messages.php');
+header('refresh:2, game_control_table_images.php');
 ?>
