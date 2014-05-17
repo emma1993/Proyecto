@@ -202,6 +202,7 @@ right: 0;
  <body background="imagen.jpg" onload="javascript:mostrarPersonaje()">
     <div id="lightP" class="white_content">
      <h1>Tu personaje secreto es:</h1>
+     <img src="categorias/lee.jpg" width="240" height="360" style="display:block; margin: 0 auto;"></img>
      <?php
 	session_start();
 	include "config.php";
@@ -227,7 +228,7 @@ right: 0;
       $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."true".", ".$rowpersonaje["nombre_personaje"].")";
 			$queryestado  = mysqli_query($insertestado);
 		}
-		echo "<img src=\"categorias/".$rowpersonaje["foto_personaje"]."\" width="120" height="280"></img>" 		
+		echo "<img src=\"categorias/".$rowpersonaje["foto_personaje"]."\" width=\"240\" height=\"360\" style=\"display:block; margin: 0 auto;></img>";		
 	}
 
      ?>
@@ -236,7 +237,7 @@ right: 0;
     <div id="lightA" class="white_content" height="300">
       <h1>Adivinar...</h1>
       <h2>Que personaje escoges?:</h2>
-      <input type="text" list="personajes" >
+      <input type="text" list="personajes">
       <datalist id="personajes">
         <?php
           session_start();
