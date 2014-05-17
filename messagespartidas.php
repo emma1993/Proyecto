@@ -28,7 +28,7 @@ if(isset($_SESSION["user_name"]))
 	{
 		while($row = mysqli_fetch_array($query))
 		{
-			if($rowspartida["user_name"] = $_SESSION["user_name"])
+			if($rowspartida["id_partida"] = $rows["id_partida"])
 			{
 				?>
 					<strong><?=$row['user_name']?></strong>: <?=$row['message']?><br>
@@ -43,5 +43,5 @@ if(isset($_SESSION["user_name"]))
 		<?
 	}
 }
-header('refresh:2, messages.php');
+header('refresh:2, messagespartidas.php');
 ?>
