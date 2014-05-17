@@ -202,7 +202,6 @@ right: 0;
  <body background="imagen.jpg" onload="javascript:mostrarPersonaje()">
     <div id="lightP" class="white_content">
      <h1>Tu personaje secreto es:</h1>
-     <img src="categorias/lee.jpg" width="240" height="360" style="display:block; margin: 0 auto;"></img>
      <?php
 	session_start();
 	include "config.php";
@@ -232,7 +231,7 @@ right: 0;
 	}
 
      ?>
-     <button onclick="javascript:cerrarPop()">Empezar!</button>
+     <button onclick="javascript:cerrarPop()" style="margin-top:10px; margin: 0 auto;">Empezar!</button>
     </div>
     <div id="lightA" class="white_content" height="300">
       <h1>Adivinar...</h1>
@@ -244,17 +243,18 @@ right: 0;
           include "config.php";
             if(isset($_SESSION["user_name"]))
             {
-              $select = "SELECT id_personaje, personaje_activo FROM partida WHERE user_name =".$_SESSION["user_name"];
+              $select = "SELECT nombre_personaje FROM partida WHERE user_name =".$_SESSION["user_name"]."AND personaje_activo = 'T'";
               $query = mysqli_query($con, $select);
               $rows = mysqli_num_rows($query);
               $cont = 0;
+              $tableval;
               if($rows > 0)
               {
                 while($row = mysqli_fetch_array($query))
                 {
                   if($row['personaje_activo'] = "T")
                   {
-                    =$tableval."<td><img src=\"".$row['id_personaje']."\"></img></td>";
+                    =$tableval."<option value=\"".$row['']."\">";
                   }
                 }
               }
