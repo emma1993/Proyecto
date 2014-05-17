@@ -9,4 +9,5 @@ create unique index chatpartida__IDX on chatpartida(
 alter table chatpartida add primary key(id_partida, user_name);
 alter table chatpartida add foreign key(id_partida) references partida(id_partida) ;
 alter table chatpartida add foreign key(user_name) references usuario(user_name);
-
+alter table Partida add column nombre_personaje nvarchar(20);
+alter table Partida add foreign key(nombre_personaje) references Categoria(nombre_personaje);

@@ -146,6 +146,24 @@ right: 0;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
  
  }
+ h2 {
+  display: inline; 
+
+  margin-top: 10px;
+ 
+  font-family: "Times New Roman", Times, serif;
+ 
+  font-weight: bold;
+ 
+  text-align: left;
+ 
+  font-size: 25px;
+ 
+  color: #FFF;
+ 
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+ 
+ }
  iframe {
    background-color: #FFF;
    margin-top: 5px;
@@ -162,19 +180,27 @@ right: 0;
  </style>
 
  <script type="text/javascript">
-  function mostrarPersonaje() {
-     document.getElementById('light').style.display='block';
+    function mostrarPersonaje() {
+     document.getElementById('lightP').style.display='block';
      document.getElementById('fade').style.display='block';
     }
     function cerrarPop() {
-     document.getElementById('light').style.display='none';
+     document.getElementById('lightP').style.display='none';
+     document.getElementById('fade').style.display='none';
+    }
+    function mostrarAdivinar() {
+     document.getElementById('lightA').style.display='block';
+     document.getElementById('fade').style.display='block';
+    }
+    function cerrarPopAdivinar() {
+     document.getElementById('lightA').style.display='none';
      document.getElementById('fade').style.display='none';
     }
  </script>
 
  </head>
  <body background="imagen.jpg" onload="javascript:mostrarPersonaje()">
-    <div id="light" class="white_content">
+    <div id="lightP" class="white_content">
      <h1>Tu personaje secreto es:</h1>
      <?php
 	session_start();
@@ -193,12 +219,12 @@ right: 0;
 		$rowturno = mysqli_fetch_array($query);
 
 		if($_SESSION["user_name"]=$rowturno["user_name_oponente"]){
-			$insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."false".", ".$rowpersonaje["nombre_personaje"].")";
+		  $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."false".", ".$rowpersonaje["nombre_personaje"].")";
 			$queryestado  = mysqli_query($insertestado);
 		}
 		else
 		{
-                        $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."true".", ".$rowpersonaje["nombre_personaje"].")";
+      $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."true".", ".$rowpersonaje["nombre_personaje"].")";
 			$queryestado  = mysqli_query($insertestado);
 		}
 		echo "<img src=\"categorias/".$rowpersonaje["foto_personaje"]."\" width="120" height="280"></img>" 		
@@ -206,6 +232,40 @@ right: 0;
 
      ?>
      <button onclick="javascript:cerrarPop()">Empezar!</button>
+    </div>
+    <div id="lightA" class="white_content" height="300">
+      <h1>Adivinar...</h1>
+      <h2>Que personaje escoges?:</h2>
+      <input type="text" list="personajes" >
+      <datalist id="personajes">
+        <?php
+          session_start();
+          include "config.php";
+            if(isset($_SESSION["user_name"]))
+            {
+              $select = "SELECT id_personaje, personaje_activo FROM partida WHERE user_name =".$_SESSION["user_name"];
+              $query = mysqli_query($con, $select);
+              $rows = mysqli_num_rows($query);
+              $cont = 0;
+              if($rows > 0)
+              {
+                while($row = mysqli_fetch_array($query))
+                {
+                  if($row['personaje_activo'] = "T")
+                  {
+                    =$tableval."<td><img src=\"".$row['id_personaje']."\"></img></td>";
+                  }
+                }
+              }
+              else
+              {
+                ?>
+                  &nbsp;
+                <?
+              }
+            }
+        ?>
+      </datalist>
     </div>
     <div id="fade" class="black_overlay"></div>
   <div class="chatbox">
