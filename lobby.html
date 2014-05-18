@@ -90,8 +90,57 @@ input[type="submit"]{
   margin-left: 5px;
   margin-right: 5px;
 }
-</style>
+#notificaciones{
+	margin-top: 110px;
+	margin-left: 63em;
+	background: rgba(0,0,0,.5);
+	border-radius: 9px;
+	padding: 0.5em;
+	width: 400px;
+	height: 350px;
 
+}
+label{
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	color: #F00;
+}
+.black_overlay{
+ display: none; 
+ position: absolute; 
+ top: 0%; 
+ left: 0%; 
+ width: 100%; 
+ height: 100%; 
+ background-color: black;
+ z-index:1001;
+ -moz-opacity: 0.6; 
+ opacity:.80; 
+ filter: alpha(opacity=80); 
+} 
+ .white_content { 
+ 	text-align: center; 
+ 	display: none; 
+ 	margin-top: 50px; 
+ 	position: absolute; 
+ 	margin-left: auto; 
+ 	margin-right: 
+ 	auto; left: 0; 
+ 	right: 0; 
+ 	width: 35%; 
+ 	height: 500px; 
+ 	padding: 16px; 
+ 	border: 16px solid orange; 
+ 	background: rgba(0,0,0,.8); 
+ 	z-index:1002; 
+ 	overflow: auto; 
+ }
+</style>
+<script type="text/javascript">
+	function ventana_reto(){
+		window.open('reto.php','retos','width=420,height=240,top=200,left=');
+	} 
+</script>
 </head>
 
 <body background="imagen.jpg">
@@ -110,20 +159,31 @@ input[type="submit"]{
 		</table>			
 	</div>
 	<div class="gamebox">
-	<input type="radio" name="categoria" value="Simpsons">Simpsons
-  	<input type="radio" name="categoria" value="actores">Actores
-  	<input type="radio" name="categoria" value="jugadores">Jugadores de Futbol
-  	<input type="submit" value="Submit" name="categoria">
-  	
-			<iframe src="pool.html" name="iframe" width="605" height="280" >
+		<form method="post" enctype="application/x-www-form-urlencoded" action="pool.php" target="iframe_pool">
+
+  		<input type="radio" name="categoria" value="Actores">Actores
+  		<input type="radio" name="categoria" value="Jugadores">Jugadores de Futbol
+  		<input type="radio" name="categoria" value="Simpsons">Simpsons
+  		<input type="submit" value="Submit" name="btn_categoria">
+			<iframe src="pool.php" name="iframe_pool" width="605" height="280" >
 
 			</iframe>		
 		
-			<button type="submit" name="send">Enviar Reto</button>	
+
 			<button type="submit" name="ingresar_categoria">Ingresar Pool</button>
-				
-				
-		
+			</form>
   	</div>
+  	
+  	<form id="notificaciones" action="notificaciones.php" target="iframe_notificacion">
+  		<label>Mis Notificaciones</label>
+
+		<iframe src="notificaciones.php" name="iframe_notificacion" width="380" height="280">
+		</iframe >
+
+		
+	
+		</form>	
+			
+  	</form>
   	</body>
 </html>
