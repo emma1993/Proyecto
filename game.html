@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+ 
+ <html>
+ 
+ <head>
+ 
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+ <title>Guess who? - Lobby</title>
+ 
+ <style type="text/css">
+ 
+ .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:1001;
+        -moz-opacity: 0.6;
+        opacity:.80;
+        filter: alpha(opacity=80);
+    }
+ .white_content {
+  text-align: center;
+        display: none;
+margin-top: 50px;
+position: absolute;
+margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+        width: 35%;
+        height: 500px;
+        padding: 16px;
+        border: 16px solid orange;
+        background: rgba(0,0,0,.8);
+        z-index:1002;
+        overflow: auto;
+}
+
+ input[type="text"]{
+ 
+  width:173px;
+ 
+  display:inline;
+ 
+  margin-left:5px;
+ 
+ }
+ 
+ body { width:960px; margin:0 auto;}
+ 
+ div.chatbox{
+ 
+  position:fixed;
+ 
+  display:table;
+ 
+  border-collapse: collapse;
+ 
+  width: 250px;
+ 
+  height: 350px;
+ 
+  border-radius: 9px;
+ 
+  padding: 0.5em;
+ 
+  background: rgba(0,0,0,.5);
+ 
+  margin-top:25px;
+ 
+  margin-bottom:100px;
+ 
+  margin-right:50px;
+ 
+  margin-left:705px;
+ 
+ }
+ 
+ div.gamebox{
+ 
+  position:fixed;
+ 
+  background: rgba(0,0,0,.5);
+ 
+  width: 630px;
+ 
+  height: 560px;
+ 
+  border-radius: 9px;
+ 
+  padding: 0.5em;
+ 
+  margin-top:25px;
+ 
+  margin-bottom:100px;
+ 
+  margin-right:50px;
+ 
+  margin-left:25px;
+ 
+ }
+ div.optionbox{
+ 
+  position:fixed;
+ 
+         border-collapse: collapse;
+ 
+  width: 235px;
+ 
+  height: 190px;
+ 
+  border-radius: 9px;
+ 
+  padding: 0.5em;
+ 
+  background: rgba(0,0,0,.5);
+ 
+  margin-top:395px;
+ 
+  margin-bottom:100px;
+ 
+  margin-right:50px;
+ 
+  margin-left:705px;
+ 
+ }
+ 
+ h1 {
+  margin-top: 10px;
+ 
+  font-family: "Times New Roman", Times, serif;
+ 
+  font-weight: bold;
+ 
+  text-align: center;
+ 
+  font-size: 30px;
+ 
+  color: #F00;
+ 
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+ 
+ }
+ h2 {
+  display: inline; 
+
+  margin-top: 10px;
+ 
+  font-family: "Times New Roman", Times, serif;
+ 
+  font-weight: bold;
+ 
+  text-align: left;
+ 
+  font-size: 25px;
+ 
+  color: #FFF;
+ 
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+ 
+ }
+ iframe {
+   background-color: #FFF;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   margin-left: 5px;
+   margin-right: 5px;
+ }
+ input[type="submit"]{
+   background-color: #FFF;
+   margin-top: 1px;
+   margin-left: 5px;
+   margin-right: 5px;
+ }
+ </style>
+
+ <script type="text/javascript">
+    function mostrarPersonaje() {
+     document.getElementById('lightP').style.display='block';
+     document.getElementById('fade').style.display='block';
+    }
+    function cerrarPop() {
+     document.getElementById('lightP').style.display='none';
+     document.getElementById('fade').style.display='none';
+    }
+    function mostrarAdivinar() {
+     document.getElementById('lightA').style.display='block';
+     document.getElementById('fade').style.display='block';
+    }
+    function cerrarPopAdivinar() {
+     document.getElementById('lightA').style.display='none';
+     document.getElementById('fade').style.display='none';
+    }
+ </script>
+
+ </head>
+ <body background="imagen.jpg" onload="javascript:mostrarPersonaje()">
+    <div id="lightP" class="white_content">
+     <h1>Tu personaje secreto es:</h1>
+     <?php
+	session_start();
+	include "config.php";
+	if(isset($_SESSION["user_name"]))
+	{
+		$selectcategoria = "SELECT DISTINCT id_partida, id_categoria FROM partida WHERE user_name =".$_SESSION["user_name"];
+		$querycategoria = mysqli_query($con, $selectcategoria);
+		$rowcategoria = mysqli_fetch_array($querycategoria);
+		$personajenum = rand(0,23);
+		$selectpersonaje = "SELECT nombre_personaje, foto_personaje FROM Categoria WHERE id_personaje =".$personajenum;
+		$querypersonaje = mysqli_query($selectpersonaje);
+		$rowpersonaje = mysqli_fetch_array($querypersonaje);
+		$selectturno = "SELECT user_name_retador, user_name_oponente FROM  WHERE user_name =".$_SESSION["user_name"];
+		$queryturno = mysqli_query($con, $selectcategoria);
+		$rowturno = mysqli_fetch_array($query);
+
+		if($_SESSION["user_name"]=$rowturno["user_name_oponente"]){
+		  $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."false".", ".$rowpersonaje["nombre_personaje"].")";
+			$queryestado  = mysqli_query($insertestado);
+		}
+		else
+		{
+      $insertestado = "INSERT INTO estadojugador(id_partida, user_name, turno_activo, personaje_secreto) VALUES(".$row['id_partida'].", ".$_SESSION["user_name"].", "."true".", ".$rowpersonaje["nombre_personaje"].")";
+			$queryestado  = mysqli_query($insertestado);
+		}
+		echo "<img src=\"categorias/".$rowpersonaje["foto_personaje"]."\" width=\"240\" height=\"360\" style=\"display:block; margin: 0 auto;></img>";		
+	}
+
+     ?>
+     <button onclick="javascript:cerrarPop()" style="margin-top:10px; margin: 0 auto;">Empezar!</button>
+    </div>
+    <div id="lightA" class="white_content" height="300">
+      <h1>Adivinar...</h1>
+      <h2>Que personaje escoges?:</h2>
+      <input type="text" list="personajes">
+      <datalist id="personajes">
+        <?php
+          session_start();
+          include "config.php";
+            if(isset($_SESSION["user_name"]))
+            {
+              $select = "SELECT nombre_personaje FROM partida WHERE user_name =".$_SESSION["user_name"]."AND personaje_activo = 'T'";
+              $query = mysqli_query($con, $select);
+              $rows = mysqli_num_rows($query);
+              $cont = 0;
+              $tableval;
+              if($rows > 0)
+              {
+                while($row = mysqli_fetch_array($query))
+                {
+                  if($row['personaje_activo'] = "T")
+                  {
+                    =$tableval."<option value=\"".$row['']."\">";
+                  }
+                }
+              }
+              else
+              {
+                ?>
+                  &nbsp;
+                <?
+              }
+            }
+        ?>
+      </datalist>
+    </div>
+    <div id="fade" class="black_overlay"></div>
+  <div class="chatbox">
+  <table width="240" height="250">
+  <form method="post" action="handler.php">
+  <tr>
+  <td><iframe src="messages_partidas.php" name="iframe" width="230" height="305"></iframe></td>
+  </tr>
+  <tr>
+  <td><input type="text" name="message"> <button type="submit" name="send">Enviar</button>
+  </tr>
+  </form>
+  </table>
+  </div>
+  <div class="gamebox">
+    <table width="240" height="250">
+    <form method="post" action="fill_table.php"> 
+    </form> 
+    </table>  
+  </div>
+  <div class="optionbox">
+  <h1>Opciones</h1>
+  <form method="post" action="optionsmainscenario.php">
+  <button type="submit" name="surrender">Rendirse</button>
+  <button type="submit" name="guess">Adivinar...</button></br>
+  <button type="submit" name="yes">Si</button>
+  <button type="submit" name="no">No</button>
+  </div>
+ </body>
+ </html>
