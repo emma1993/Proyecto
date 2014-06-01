@@ -2,7 +2,7 @@
 session_start();
 include "config.php";
 
-if(isset($_POST['refresh'])  && isset($_SESSION['user_name'])){
+if(isset($_SESSION['user_name'])){
     $user = $_SESSION['user_name'];
     $category="0";
  
@@ -45,17 +45,17 @@ th{
          $category="1";
         $select = "SELECT * FROM pool WHERE id_categoria = ".$category."";
         if ($_POST['categoria']=="Actores") {
-             
+             $_SESSION['categoria']="0";
              $category="0";
              $select = "SELECT * FROM pool WHERE id_categoria = ".$category."";
         }
         if ($_POST['categoria']=="Jugadores") {
-             
+              $_SESSION['categoria']="1";
              $category="1";
              $select = "SELECT * FROM pool WHERE id_categoria = ".$category."";
         }
         if ($_POST['categoria']=="Simpsons") {
-            
+            $_SESSION['categoria']="2";
              $category="2";
              $select = "SELECT * FROM pool WHERE id_categoria = ".$category."";
         }
@@ -87,9 +87,23 @@ th{
             <?
         }
         ?>
+        <?php
+            if (isset($_POST['ingresar_categoria'])) {
+                $sql=mysqli_query($con,"INSERT INTO pool (id_partida,user_name,estado,id_categoria) VALUES (2,'{$_SESSION['user_name']}','disponible',0)");
+        ?>
+              <td>2</td>
+              <td><?php $_SESSION['user_name']?></td>  
+              <td>disponibilidad</td>
+              <td>partidas</td>
+              <?php
+            }
+        ?>
+
+
+        
     </table>
     <button type="submit" name="send">Enviar Reto</button> 
-     <input type="text" name="mensaje" >
+    <input type="text" name="mensaje" >
 </form>
 </body>
 </html>

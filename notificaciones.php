@@ -18,10 +18,15 @@ th{
     
 }
 </style>
+<script type="text/javascript">
+function reto(){
+    window.open('validar_notificacion.php');
+}
+</script>
 </head>
 <body leftmargin="0" topmargin="0">
-<form>
-	<table width="380">
+<form method="post" action="validar_notificacion.php">
+	<table width="380" name="tabla_notificacion">
         <tr>
         <th>Tu usuario</th>
         <th width="80">Nombre Oponente</th>
@@ -29,8 +34,8 @@ th{
         </tr>
         <tr>
     <?php 
-    $user_name="eneiza";
-    $select = "SELECT * FROM notificacion";
+    $user_name=$_SESSION['user_name'];
+    $select = "SELECT * FROM notificacion WHERE user_name_oponente='$user_name'";
      $query = mysqli_query($con, $select);
      $rows = mysqli_num_rows($query);
         if($rows > 0)
@@ -55,12 +60,12 @@ th{
             <?
         }
         ?>
-
-       
     </table>
-    <input type="submit" value="Aceptar Reto">
-    <input type="submit" value="Rechazar Reto">
+     <input type="submit" name="btn_aceptar" value="Aceptar Reto">
+    <input type="submit" name="btn_rechazar" value="Rechazar Reto">
 </form>
+ 
+
 </body>
 </html>
 
