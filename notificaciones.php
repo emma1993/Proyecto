@@ -19,8 +19,8 @@ th{
 }
 </style>
 <script type="text/javascript">
-function reto(){
-    window.open('validar_notificacion.php');
+function reto_aceptado(){
+    window.open("tablero/game.html");
 }
 </script>
 </head>
@@ -61,7 +61,7 @@ function reto(){
         }
         ?>
     </table>
-     <input type="submit" name="btn_aceptar" value="Aceptar Reto">
+     <input type="submit" name="btn_aceptar" onclick="reto_aceptado()" value="Aceptar Reto">
     <input type="submit" name="btn_rechazar" value="Rechazar Reto">
 </form>
  
