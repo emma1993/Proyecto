@@ -18,10 +18,6 @@
       }else{
 
       }
-<<<<<<< HEAD
   }
-=======
-  } 
->>>>>>> 2d3fe141ddaaa1697dd6aa2c22bbdc72064854fc
   echo $tableval;
 ?>
